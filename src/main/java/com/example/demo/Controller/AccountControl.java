@@ -18,24 +18,29 @@ public class AccountControl {
 //        this.crud = crud;
 //    }
     @Autowired
-    private AccountCRUD accountCrud;
+     AccountCRUD accountCrud;
     @PostMapping("/createAccount")
     public Account createAccount(@RequestBody Account s){
         accountCrud.save(s);
-        //        cityDAO.saveUpdate(s);
         return s;
     }
-    @GetMapping("/getAccount/{username}")
+    @GetMapping("/getUsername/{username}")
     public List<Account> getUsername(@PathVariable("username")String username){
         return accountCrud.findByName(username);
     }
     @GetMapping("/getAccount/{username}/{password}")
     public boolean getAccount(@PathVariable("username") String username, @PathVariable("password") String password){
-        return accountCrud.findByUsername(username,password);
+        if(accountCrud.findByUsername(username, password)){
+            return true;
+        }
+        else return false;
     }
     @GetMapping("/getAccountStatus/{username}/{password}")
     public boolean getStatus(@PathVariable("username") String username, @PathVariable("password") String password){
-        return accountCrud.findByStatus(username,password);
+        if(accountCrud.findByStatus(username, password)){
+            return true;
+        }
+        else return false;
     }
 
 }

@@ -9,7 +9,7 @@
 //import java.util.List;
 //
 //@Repository
-//public class AccountIMPL implements CRUD{
+//public class AccountIMPL implements AccountCRUD{
 //    private final EntityManager manager;
 //
 //    @Autowired

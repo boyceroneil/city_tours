@@ -24,19 +24,20 @@ public class CityController {
     }
 
     @PostMapping("/SaveCity")
-    public City saveCity(City city){
-         cityDAO.saveUpdate(city);
+    public City saveCity(@RequestBody City city){
+        city.setId(0);
+        cityDAO.saveUpdate(city);
         return city;
     }
 
     @PutMapping("/UpdateCity")
-    public City updateCity(City city){
+    public City updateCity(@RequestBody City city){
         cityDAO.saveUpdate(city);
         return city;
     }
 
     @DeleteMapping("/DeleteCity/{id}")
-    public String deleteCity(int id){
+    public String deleteCity(@PathVariable int id){
         cityDAO.deleteId(id);
         return "deleted " +id;
     }
