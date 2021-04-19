@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
 import org.hibernate.query.Query;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class CityIMPL implements CityDAO{
     }
 
     @Override
+    @Transactional
     public List<Object> searchAll() {
         Session session = manager.unwrap((Session.class));
         Query<Object> query = session.createQuery("from City");
@@ -41,12 +44,14 @@ public class CityIMPL implements CityDAO{
     }
 
     @Override
+    @Transactional
     public void saveUpdate(Object object) {
     Session session = manager.unwrap(Session.class);
     session.saveOrUpdate(object);
     }
 
     @Override
+    @Transactional
     public void deleteId(int theId) {
     Session session = manager.unwrap((Session.class));
         City city = session.get(City.class, theId);
